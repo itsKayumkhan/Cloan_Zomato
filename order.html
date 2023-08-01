@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Food online</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/login.css">
+    <link
+      rel="shortcut icon"
+      href="https://imgs.search.brave.com/GXq8HtY_9gcf1I5nHl0ChiNap6cTW5WbJ9tzj3Luu44/rs:fit:560:320:1/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy83/Lzc1L1pvbWF0b19s/b2dvLnBuZw"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./css/order.css" />
+    <link rel="stylesheet" href="./css/filters.css" />
+    <style>
+      .cuisines .cui-item {
+        z-index: 11;
+        height: 60%;
+      }
+      .cui_check {
+        padding: 0.2rem 0;
+        margin: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+      }
+      .cui-item p {
+        padding-left: 1rem;
+      }
+      .active-footer {
+        height: 17%;
+        border-radius: 0;
+      }
+      .active-btn {
+        border-top: 1px solid;
+      }
+      .cui_search_box {
+        height: 15%;
+      }
+      .close {
+        font-weight: lighter;
+      }
+      .apply {
+        font-weight: lighter;
+        font-size: 1.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="act">
+      <div class="active-filter">
+        <div class="header-box">
+          <div class="header">Filters</div>
+          <div class="active-close" id="closeBtn">
+            <ion-icon name="close-outline"></ion-icon>
+          </div>
+        </div>
+
+        <div class="filter-box">
+          <div class="selection">
+            <ul class="active-ul">
+              <li id="Sby" class="filter-item Sby">Sort by</li>
+              <li id="Cui" class="filter-item">Cuisines</li>
+              <li id="Rat" class="filter-item">Rating</li>
+              <li id="CPP" class="filter-item">Cost per person</li>
+              <li id="Mf" class="filter-item">More filters</li>
+            </ul>
+          </div>
+          <div class="select">
+            <div class="select-item select_sort">
+              <ul class="sort-ul">
+                <li class="sort-list">
+                  <input type="radio" name="sort" id="Popularity" />Popularity
+                </li>
+                <li class="sort-list">
+                  <input type="radio" name="sort" id="rH_L"" />Rating: High to
+                  Low
+                </li>
+                <li class="sort-list">
+                  <input type="radio" name="sort" id="time" />Delivery Time
+                </li>
+                <li class="sort-list">
+                  <input type="radio" name="sort" id="cL_H" />Cost: Low to High
+                </li>
+                <li class="sort-list">
+                  <input type="radio" name="sort" id="cH_L" />Cost: High to Low
+                </li>
+              </ul>
+            </div>
+            <div class="select-item select_cuisines">
+              <div class="cui_search_box">
+                <ion-icon name="search-outline"></ion-icon>
+                <input
+                  type="search"
+                  name="cui-box"
+                  id="cui-box"
+                  placeholder="Search here"
+                />
+              </div>
+              <div class="cui-item"></div>
+            </div>
+            <div class="select-item select_rating">
+              <div class="rat-box">
+                <div class="rating-head">Rating</div>
+                <div class="rating-selected">Any</div>
+              </div>
+
+              <div class="range-bar-container">
+                <input
+                  type="range"
+                  id="range-bar"
+                  min="0"
+                  step="25"
+                  max="100"
+                  value="0"
+                />
+                <div class="range-labels">
+                  <span data-value="0">Any</span>
+                  <span data-value="25">3.5+</span>
+                  <span data-value="50">4+</span>
+                  <span data-value="75">4.5+</span>
+                  <span data-value="100">5+</span>
+                </div>
+              </div>
+            </div>
+            <div class="select-item cpp">
+              <div class="cpp-box">
+                <div class="cpp-head">cost per person</div>
+                <div class="cpp-diff">
+                  <div class="diff-box zero">0</div>
+                  <div class="diff-box des">-</div>
+                  <div class="diff-box sec">Any</div>
+                </div>
+              </div>
+              <div class="cpp-range">
+                <div class="wrapper">
+                  <div class="values">
+                    <span id="range1"> 0 </span>
+                    <span id="range2"> 1000 </span>
+                  </div>
+                  <div class="container">
+                    <div class="slider-track"></div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1000"
+                      step="200"
+                      value="0"
+                      id="slider-1"
+                      oninput="slideOne()"
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max="1000"
+                      step="200"
+                      value="1000"
+                      id="slider-2"
+                      oninput="slideTwo()"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="select-item select_more">
+              <div class="more_search-box">
+                <div class="cui_search_box">
+                  <ion-icon name="search-outline"></ion-icon>
+                  <input
+                    type="search"
+                    name="cui-box"
+                    id="cui-box"
+                    class="cui-box"
+                    placeholder="Search here"
+                  />
+                </div>
+                <div class="more-box">
+                  <input type="checkbox" id="more" />
+                  <label for="">Great Offers</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="active-footer">
+          <div class="active-btn">
+            <div class="clear">Clear all</div>
+            <div class="apply">Apply</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="account">
+      <div class="main-login">
+        <div class="header">
+          <h2>Login</h2>
+          <div class="icon-clo">
+            <ion-icon name="close-outline" role="img" class="md hydrated"></ion-icon>
+          </div>
+        </div>
+    
+        <div class="no-box">
+         
+            
+            <div class="cCode">
+              <div class="icon-india"> <img src="https://b.zmtcdn.com/images/flags_z10/in.png?output-format=webp" alt=""></div><select name="cCode" id="code">
+                <option value="india" selected="">+91</option>
+              </select>
+            </div>
+            <div class="no-">
+              <input type="number" name="mobile" id="no." placeholder="Phone">
+            </div>
+         
+        </div>
+    
+        <div class="send-btn">
+          <span>Send One Time Password</span>
+        </div>
+    
+        <div class="or-btn">
+          <hr>
+          <span>Or</span>
+        </div>
+    
+        <div class="same-box email">
+          <div class="icon-l">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#EF4F5F" width="24" height="24" viewBox="0 0 20 20" aria-labelledby="icon-svg-title- icon-svg-desc-" role="img" class="sc-rbbb40-0 cdktuZ"><title>mail-fill</title><path d="M10 9.58c-1.62 0-10-4.76-10-4.76v-0.74c0-0.92 0.74-1.66 1.66-1.66h16.68c0.92 0 1.66 0.74 1.66 1.66l-0.020 0.84c0 0-8.28 4.66-9.98 4.66zM10 11.86c1.78 0 9.98-4.46 9.98-4.46l0.020 10c0 0.92-0.74 1.66-1.66 1.66h-16.68c-0.92 0-1.66-0.74-1.66-1.66l0.020-10c0 0 8.36 4.46 9.98 4.46z"></path></svg>
+          </div>
+          <span>Continue with Email</span>
+        </div>
+    
+        <div class="same-box google">
+          <div class="icon-l">
+            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.87566 13.2946L4.10987 16.1534L1.31093 16.2126C0.474461 14.6611 0 12.886 0 10.9997C0 9.17565 0.443609 7.45552 1.22994 5.94092H1.23054L3.72238 6.39776L4.81396 8.87465C4.5855 9.54071 4.46097 10.2557 4.46097 10.9997C4.46106 11.8072 4.60732 12.5808 4.87566 13.2946Z" fill="#FBBB00"></path><path d="M21.8082 8.94507C21.9345 9.61048 22.0004 10.2977 22.0004 11C22.0004 11.7875 21.9176 12.5557 21.7598 13.2967C21.2243 15.8183 19.8252 18.0201 17.8869 19.5782L17.8863 19.5776L14.7477 19.4175L14.3035 16.6445C15.5896 15.8902 16.5947 14.7098 17.1242 13.2967H11.2422V8.94507H17.21H21.8082Z" fill="#518EF8"></path><path d="M17.8865 19.5778L17.8871 19.5784C16.002 21.0937 13.6073 22.0002 11.0006 22.0002C6.81152 22.0002 3.16945 19.6588 1.31152 16.2132L4.87625 13.2952C5.8052 15.7744 8.19679 17.5392 11.0006 17.5392C12.2057 17.5392 13.3348 17.2134 14.3036 16.6447L17.8865 19.5778Z" fill="#28B446"></path><path d="M18.0208 2.53241L14.4573 5.44981C13.4546 4.82307 12.2694 4.46102 10.9996 4.46102C8.13229 4.46102 5.69596 6.30682 4.81356 8.87494L1.23009 5.9412H1.22949C3.06022 2.41154 6.74823 0 10.9996 0C13.6686 0 16.1158 0.950726 18.0208 2.53241Z" fill="#F14336"></path></svg>
+          </div>
+          <span>Continue with Google</span>
+        </div>
+    
+        <div class="create">
+          <div>new to Zomato?
+            <span class="singUp">Create account</span>
+          </div>
+        </div>
+    
+      </div>
+    
+     <div class="main-sing main-login ">
+        <div class="header">
+          <h2>Signup</h2>
+          <div class="icon-clo">
+            <ion-icon name="close-outline" role="img" class="md hydrated"></ion-icon>
+          </div>
+        </div>
+    
+        <div class="details">
+          <div class="no-box">
+            <input type="text" name="mobile" id="name" placeholder="Full Name">
+          </div>
+          <div class="no-box">
+            <input type="email" name="mobile" id="email" placeholder="Email">
+          </div>
+        </div>
+    
+        <div class="desc">
+          <div class="check-box">
+            <input type="checkbox" name="mobile" id="cbox">
+          </div>
+          <div class="text">
+            I agree to Zomato's <span><a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> </span>and <a href="#">Content Policies</a>
+          </div>
+    
+        </div>
+    
+        <div class="send-btn">
+          <span>create account</span>
+        </div>
+    
+        
+        <div class="or-btn">
+          <hr>
+          <span>Or</span>
+        </div>
+    
+        <div class="same-box google">
+          <div class="icon-l">
+            <svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.87566 13.2946L4.10987 16.1534L1.31093 16.2126C0.474461 14.6611 0 12.886 0 10.9997C0 9.17565 0.443609 7.45552 1.22994 5.94092H1.23054L3.72238 6.39776L4.81396 8.87465C4.5855 9.54071 4.46097 10.2557 4.46097 10.9997C4.46106 11.8072 4.60732 12.5808 4.87566 13.2946Z" fill="#FBBB00"></path><path d="M21.8082 8.94507C21.9345 9.61048 22.0004 10.2977 22.0004 11C22.0004 11.7875 21.9176 12.5557 21.7598 13.2967C21.2243 15.8183 19.8252 18.0201 17.8869 19.5782L17.8863 19.5776L14.7477 19.4175L14.3035 16.6445C15.5896 15.8902 16.5947 14.7098 17.1242 13.2967H11.2422V8.94507H17.21H21.8082Z" fill="#518EF8"></path><path d="M17.8865 19.5778L17.8871 19.5784C16.002 21.0937 13.6073 22.0002 11.0006 22.0002C6.81152 22.0002 3.16945 19.6588 1.31152 16.2132L4.87625 13.2952C5.8052 15.7744 8.19679 17.5392 11.0006 17.5392C12.2057 17.5392 13.3348 17.2134 14.3036 16.6447L17.8865 19.5778Z" fill="#28B446"></path><path d="M18.0208 2.53241L14.4573 5.44981C13.4546 4.82307 12.2694 4.46102 10.9996 4.46102C8.13229 4.46102 5.69596 6.30682 4.81356 8.87494L1.23009 5.9412H1.22949C3.06022 2.41154 6.74823 0 10.9996 0C13.6686 0 16.1158 0.950726 18.0208 2.53241Z" fill="#F14336"></path></svg>
+          </div>
+          <span>Continue with Google</span>
+        </div>
+    
+        <div class="create">
+          <div>Already have an account?
+           <span class="logIn">Login</span>
+          </div>
+        </div>
+    
+      </div> 
+    </div>
+      <div class="main-nav">
+        <nav>
+          <div class="title">
+            <img
+              src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png?fit=around|198:42&crop=198:42;*,*"
+              alt=""
+            />
+          </div>
+          <ul class="ul-list">
+            <li class="list search-list">
+              <div class="search">
+                <div class="location">
+                  <img src="./location-pin.png" alt="" />
+                  <select class="locat">
+                    <option value="city" selected>jaipur</option>
+                    <option value="city">jaipur</option>
+                    <option value="city">jaipur</option>
+                  </select>
+                </div>
+                <div class="search-box">
+                  <ion-icon name="search-outline"></ion-icon>
+                  <input type="text" placeholder="search for restaurant " />
+                </div>
+              </div>
+            </li>
+            <li class="list logIn">Log in</li>
+            <li class="list singUp">Sign up</li>
+          </ul>
+        </nav>
+      </div>
+
+    <div class="main-nav">
+      <div class="nav-next">
+        <ul class="nav-ul">
+          <a href="index.html"> <li class="nav-list">Home /</li></a>
+          <li class="nav-list">India /</li>
+          <li class="nav-list">Jaipur /</li>
+          <li class="nav-list">SC road</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-nav uniq-tab">
+      <div class="tab">
+        <a href="./order.html"
+          ><div class="delivery active" id="delivery">
+            <div class="del-img">
+              <img
+                src="https://b.zmtcdn.com/data/o2_assets/c0bb85d3a6347b2ec070a8db694588261616149578.png"
+                alt=""
+                id="del"
+              />
+            </div>
+            <div class="del-text">
+              <p>Delivery</p>
+            </div>
+          </div></a
+        >
+        <a href="./dininig.html"
+          ><div class="delivery" id="nightout">
+            <div class="del-img">
+              <img
+                src="https://b.zmtcdn.com/data/o2_assets/30fa0a844f3ba82073e5f78c65c18b371616149662.png"
+                alt=""
+                id="out"
+              />
+            </div>
+            <div class="del-text">
+              <p>dining out</p>
+            </div>
+          </div></a
+        >
+        <a href="./nightOut.html"
+          ><div class="delivery" id="life">
+            <div class="del-img">
+              <img
+                src="https://b.zmtcdn.com/data/o2_assets/855687dc64a5e06d737dae45b7f6a13b1616149818.png"
+                alt=""
+                id="night"
+              />
+            </div>
+            <div class="del-text">
+              <p>night life</p>
+            </div>
+          </div></a
+        >
+      </div>
+    </div>
+
+    <div class="main-nav uniq-tab">
+      <div class="filter">
+        <div class="filters" id="openFilter">
+          <ion-icon name="filter-outline"></ion-icon>
+          <p>Filters</p>
+        </div>
+        <div class="rating">
+          <p>Rating 4.0+</p>
+          <div class="icon">
+            <ion-icon name="close-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="cuisines">
+          <div class="first">
+            <p>Cuisines</p>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </div>
+          <div class="cui-main">
+            <div class="cui-head same-item">
+              <p>Cuisines</p>
+              <div class="icon close">
+                <ion-icon name="close-outline"></ion-icon>
+              </div>
+            </div>
+            <div class="cui_search_box same-item">
+              <ion-icon name="search-outline"></ion-icon>
+              <input
+                type="search"
+                name="cui-box"
+                id="cui-box-2"
+                class="cui-box"
+                placeholder="Search here"
+              />
+            </div>
+            <div class="cui-item same-item"></div>
+            <div class="active-footer">
+              <div class="active-btn">
+                <div class="clear">Clear all</div>
+                <div class="apply">Apply</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-nav uniq" id="main">
+      <div class="slide">
+        <div class="head-box">
+          <h5>Inspiration for your first order</h5>
+        </div>
+        <div class="slides">
+          <div class="left-icon control" id="left-slide left">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </div>
+
+          <div class="wrapper">
+            <div class="carousel">
+              <div class="slide-img-box" id="slide-img-box"></div>
+            </div>
+          </div>
+
+          <div class="right-icon control" id="right-slide right">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <div class="slide">
+        <div class="head-box">
+          <h5>Top brands for you</h5>
+        </div>
+        <div class="slides">
+          <div class="left-icon control" id="left-slide left">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </div>
+
+          <div class="wrapper">
+            <div class="carousel">
+              <div class="slide-img-box" id="brands"></div>
+            </div>
+          </div>
+
+          <div class="right-icon control" id="right-slide right">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <div class="cards">
+        <div class="cards-head">Order food online in jaipur</div>
+        <div class="food-card" id="food-card"></div>
+      </div>
+    </div>
+
+    <div class="main-nav">
+      <footer>
+        <div class="f-title">
+          <div class="f-img">
+            <img
+              src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png?fit=around|198:42&crop=198:42;*,*"
+              alt=""
+            />
+          </div>
+          <div class="box">
+            <div class="contary">
+              <img
+                src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/svg/1f1ee-1f1f3.svg"
+                alt=""
+              />
+              <h2 class="name">india</h2>
+            </div>
+            <div class="language">
+              <ion-icon name="globe-outline"></ion-icon>
+              <h2 class="name">english</h2>
+            </div>
+          </div>
+        </div>
+        <div class="f-section">
+          <div class="f-about">
+            <div class="f-head">About Zomoto</div>
+            <div class="text">
+              <ul class="f-ul">
+                <li class="f-list">Who we are</li>
+                <li class="f-list">Blog</li>
+                <li class="f-list">Work With us</li>
+                <li class="f-list">investor relation</li>
+                <li class="f-list">report fraud</li>
+                <li class="f-list">contact</li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-about">
+            <div class="f-head">Zomaverse</div>
+            <div class="text">
+              <ul class="f-ul">
+                <li class="f-list">Zomoto</li>
+                <li class="f-list">Blinkit</li>
+                <li class="f-list">Feedin india</li>
+                <li class="f-list">hyperpure</li>
+                <li class="f-list">zomaland</li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-about">
+            <div class="f-head">For restaurants</div>
+            <div class="text">
+              <ul class="f-ul">
+                <li class="f-list">partner with us</li>
+                <li class="f-list">apps for you</li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-about">
+            <div class="f-head">learn more</div>
+            <div class="text">
+              <ul class="f-ul">
+                <li class="f-list">privacy</li>
+                <li class="f-list">security</li>
+                <li class="f-list">terms</li>
+                <li class="f-list">sitemap</li>
+              </ul>
+            </div>
+          </div>
+          <div class="f-about">
+            <div class="f-head">social links</div>
+            <div class="text">
+              <ul class="f-ul f-links">
+                <li class="f-list">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </li>
+                <li class="f-list">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </li>
+                <li class="f-list">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </li>
+                <li class="f-list">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                </li>
+                <li class="f-list">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="f-footer">
+          By continuing past this page, you agree to our Terms of Service,
+          Cookie Policy, Privacy Policy and Content Policies. All trademarks are
+          properties of their respective owners. 2008-2023 © Zomato™ Ltd. All
+          rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <script src="./js/Cards.js"></script>
+    <script src="./js/brands.js"></script>
+    <script src="./js/filter.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="./js/script.js
+    "></script>
+    <script src="./js/cui.js
+    "></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,256 @@
+.account {
+    position: absolute;
+    display: none;
+    height: 100vh;
+    z-index: 111;
+    width: 100%;
+    top: -1px;
+    align-items: center;
+    color: #686868;
+    justify-content: center;
+    font-size: 1.7rem;
+}
+.account a{
+    text-decoration: none;
+    color: #f33;
+}
+.btn{
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    background: #000;
+}
+
+.main-login::before,.main-sing::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0px;
+    position: absolute;
+    background-color: rgb(28, 28, 28);
+    opacity: 0.85;
+
+}
+
+.main-login{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 36%;
+    height: 75%;
+    padding: 10px 2.4rem 2.4rem;
+    border-radius: 0.4rem;
+}
+input
+{
+    outline: none;
+}
+.header
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    font-size: 2rem;
+    height: 10%;
+    color: #4f4f4f;
+}
+.icon-clo
+{
+    font-size: 3rem;
+    cursor: pointer;
+
+}
+.no-box
+{
+    display: flex;
+    width: 100%;
+    height: 12%;
+    padding: .5rem 0;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: .5rem;
+
+}
+.icon-india {
+    display: flex;
+    width: 40%;
+    height: 45%;
+    justify-content: end;
+    border-radius: 0.4rem;
+}
+.icon-india img{
+    object-fit: fill;
+}
+.cCode {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    border: none;
+    align-items: center;
+    justify-content: space-around;
+}
+#code
+{
+    width: 40%;
+    display: flex;
+    border: none;
+    justify-content: end;
+    align-items: center;
+}
+
+.no-{
+    width: 70%;
+    height: 100%;
+    display: flex;
+}
+
+.no-bo{
+    display: flex;
+    width: 70%;
+    height: 100%;
+}
+
+.no- input{
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    border: none;
+    padding-left: 0.5rem;
+    border-left: 1px solid ;
+
+}
+
+.send-btn
+{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 10%;
+    background: rgb(239, 79, 95);
+    border-radius: .5rem;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all ease .3s;
+}
+.send-btn:hover{
+    background-color: rgb(224, 53, 70);
+    color: whitesmoke;
+}
+
+
+.send-btn span
+{
+    display: flex;
+    align-items: center;
+}
+
+.or-btn
+{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.or-btn hr{
+    width: 100%;
+    position: relative;
+}
+.or-btn span{
+    position: absolute;
+    background-color: #fff;
+    padding: 0 .7rem;
+}
+
+.same-box
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(207, 207, 207);
+    cursor: pointer;
+
+    padding: 1rem 0;
+    color: #696969;
+    border-radius: .3rem;
+}
+.icon-l
+{
+    padding: 0 1rem;
+    /* width: 0%; */
+    display: flex;
+    /* align-items: center; */
+    justify-content: end;
+}
+.same-box span
+{
+    font-size: 1.8rem;
+    width: 50%;
+}
+.create
+{
+    width: 100%;
+    text-transform:capitalize;
+
+}
+.create span
+{
+    color: rgb(239, 79, 95);
+    cursor: pointer;
+
+}
+.details
+{
+    display: flex;
+    flex-direction: column;
+    height: 25%;
+    width: 100%;
+
+}
+.details .no-box
+{
+    height: 40%;
+    margin: .7rem 0 ;
+    border-radius: .4rem;
+
+    
+}
+.details .no-box input{
+    width: 100%;
+    height: 80%;
+    border: none;
+    margin: 1rem;
+}
+.desc {
+    display: flex;
+    /* height: 20%; */
+    align-items: center;
+    font-size: 1.6rem;
+}
+.text
+{
+    padding-left: 0.4rem;
+}
+
+
+.main-sign{
+    display: none;
+
+}
+.check-box
+{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 10%;
+    height: 80%;
+}
